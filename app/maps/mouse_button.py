@@ -1,4 +1,4 @@
-from app.maps import StaticMap
+from app.maps.static_map import StaticMap
 
 
 class MouseButtonMap(StaticMap):
