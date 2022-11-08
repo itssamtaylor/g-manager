@@ -2,7 +2,7 @@ from app.maps.static_map import StaticMap
 
 
 class ModifierMap(StaticMap):
-    _map = {
+    _map: dict[int, str] = {
         0: "LCTRL",
         1: "LSHIFT",
         2: "LALT",

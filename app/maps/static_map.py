@@ -1,17 +1,17 @@
 class StaticMap:
-    _map = {}
-    _flipped = {}
+    _map: dict[int, str] = {}
+    _flipped: dict[str, int] = {}
 
     def __init__(self):
         self._flipped = {v: k for k, v in self._map.items()}
 
-    def all(self):
+    def all(self) -> dict[int, str]:
         return self._map
 
-    def flipped(self):
+    def flipped(self) -> dict[str, int]:
         return self._flipped
 
-    def get(self, search):
+    def get(self, search: str | int) -> int | str | None:
         try:
             if isinstance(search, str):
                 return self.to_raw(search)
@@ -20,14 +20,14 @@ class StaticMap:
         except KeyError:
             return None
 
-    def from_raw(self, raw):
+    def from_raw(self, raw: int) -> str:
         return self.to_string(raw)
 
-    def from_string(self, string):
+    def from_string(self, string: str) -> int:
         return self.to_raw(string)
 
-    def to_string(self, raw):
+    def to_string(self, raw: int) -> str:
         return self._map[raw]
 
-    def to_raw(self, string):
+    def to_raw(self, string: str) -> int:
         return self._flipped[string.upper()]

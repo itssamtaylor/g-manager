@@ -2,7 +2,7 @@ from app.maps.static_map import StaticMap
 
 
 class KeyMap(StaticMap):
-    _map = {
+    _map: dict[int, str] = {
         0x00: "NOKEY",
         0x01: "ROLL_OVER",
         0x02: "POST_FAIL",

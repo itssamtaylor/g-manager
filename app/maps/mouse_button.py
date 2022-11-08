@@ -2,7 +2,7 @@ from app.maps.static_map import StaticMap
 
 
 class MouseButtonMap(StaticMap):
-    _map = {
+    _map: dict[int, str] = {
         0x00: "NO_MOUSEBUT",
         0x01: "LEFT_CLICK",
         0x02: "RIGHT_CLICK",
