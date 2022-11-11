@@ -1,0 +1,18 @@
+[app]
+debug = true
+force = false
+json_indent = 4
+
+[device]
+name = "G600"
+type = "mouse"
+
+[hid_defaults]
+hid_read_type = 0xA1
+hid_read_request = 0x01
+hid_write_type = 0x21
+hid_write_request = 0x09
+hid_timeout = 1000
+
+[device_defaults]
+vendor_id = 0x046d
