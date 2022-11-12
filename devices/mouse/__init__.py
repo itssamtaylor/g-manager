@@ -7,4 +7,5 @@ class Mouse(devices.Device):
     has_dpi_shift = False
     shiftable = False
 
-
+    def button_names(self):
+        return None

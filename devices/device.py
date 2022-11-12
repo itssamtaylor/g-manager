@@ -25,3 +25,6 @@ class Device:
 
         if self.hid_write_index is None:
             self.hid_write_index = self.control_interface
+
+    def data_order(self):
+        raise NotImplemented

@@ -70,13 +70,13 @@ class DeviceHandler:
             self.disconnect_system()
             self.claim()
 
-    def ctrl_transfer(self, *args, **kwargs) -> int | bytes:
+    def ctrl_transfer(self, *args, **kwargs):
         self._handle_connection()
         data = self.device.ctrl_transfer(*args, **kwargs)
         self._handle_disconnection()
         return data
 
-    def read_report(self, report_id: int, length: int) -> bytes:
+    def read_report(self, report_id: int, length: int):
         return self.ctrl_transfer(
             bmRequestType=self.device_class.hid_read_type,
             bRequest=self.device_class.hid_read_request,
@@ -86,7 +86,7 @@ class DeviceHandler:
             timeout=self.device_class.hid_timeout
         )
 
-    def write_report(self, report_id: int, data: bytes) -> int:
+    def write_report(self, report_id: int, data: bytes):
         return self.ctrl_transfer(
             bmRequestType=self.device_class.hid_write_type,
             bRequest=self.device_class.hid_write_request,
@@ -96,7 +96,7 @@ class DeviceHandler:
             timeout=self.device_class.hid_timeout
         )
 
-    def read_reports(self) -> list:
+    def read_reports(self):
         self.open_batch_job()
         reports = []
         for report_id in self.device_class.report_ids:
@@ -104,7 +104,7 @@ class DeviceHandler:
         self.close_batch_job()
         return reports
 
-    def write_reports(self, reports: list) -> bool:
+    def write_reports(self, reports: list):
         self.open_batch_job()
         success = True
         for report_id, report in zip(self.device_class.report_ids, reports):
