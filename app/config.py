@@ -1,7 +1,14 @@
+import typing
+
 import toml
 import devices
+import typing
 
 _loaded = toml.load('config.toml')
+
+
+def get_loaded() -> dict[str, typing.Any]:
+    return _loaded
 
 
 def _load_device() -> devices.Device:

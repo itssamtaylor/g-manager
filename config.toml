@@ -2,6 +2,7 @@
 debug = true
 force = false
 json_indent = 4
+lang = "en"
 
 [device]
 name = "G600"

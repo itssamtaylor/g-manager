@@ -1,0 +1,35 @@
+{
+    "button_action": {
+        "_name": "{button_name}",
+        "device_scan_code": "deviceScanCode",
+        "kb_modifier": "kbModifiers",
+        "kb_scan_code": "kbScanCode"
+    },
+    "button_map": {
+        "_name": "Button Map {shifted}",
+        "prefix": "g"
+    },
+    "led_colors": {
+        "_name": "LED Colors {shifted}",
+        "red": "Red",
+        "green": "Green",
+        "blue": "Blue"
+    },
+    "lighting_type": {
+        "_name": "Lighting",
+        "lighting_effect": "Lighting Effect",
+        "rate": "Lighting Change Rate (0-15):"
+    },
+    "dpi_group": {
+        "_name": "DPI",
+        "dpi_shift_dpi": "DPI_SHIFT DPI",
+        "default_index": "Default DPI Index",
+        "dpi_item": "DPI{index}"
+    },
+    "poll_rate": {
+        "_name": "Poll Rate"
+    },
+    "unknown": {
+        "_name": "Unknown{index}"
+    }
+}
