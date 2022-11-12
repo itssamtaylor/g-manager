@@ -1,17 +1,20 @@
+import app.config
+
+
 class Device:
-    vendor_id = None
-    product_id = None
-    control_interface = None
-    report_ids = ()
-    unknown_group_indexes = []
-    read_length = None
-    hid_read_type = None
-    hid_read_request = None
-    hid_read_index = None
-    hid_write_type = None
-    hid_write_request = None
-    hid_write_index = None
-    hid_timeout = None
+    vendor_id: int = app.config.get('device_defaults.vendor_id')
+    product_id: int = None
+    control_interface: int = None
+    report_ids: tuple[int] = ()
+    unknown_group_indexes: list[tuple[int]] = []
+    read_length: int = None
+    hid_read_type: int = app.config.get('hid_defaults.hid_read_type')
+    hid_read_request: int = app.config.get('hid_defaults.hid_read_request')
+    hid_read_index: int = None
+    hid_write_type: int = app.config.get('hid_defaults.hid_write_type')
+    hid_write_request: int = app.config.get('hid_defaults.hid_write_request')
+    hid_write_index: int = None
+    hid_timeout: int = app.config.get('hid_defaults.hid_timeout')
 
     def __init__(self):
         self.num_unknown_groups = len(self.unknown_group_indexes)
@@ -22,4 +25,3 @@ class Device:
 
         if self.hid_write_index is None:
             self.hid_write_index = self.control_interface
-

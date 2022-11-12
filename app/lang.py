@@ -1,26 +1,19 @@
 import typing
 import app.config
 import json
+import app.helpers
 
 
 def _load_lang() -> dict[str, typing.Any]:
-    file_name = 'lang/' + app.config.get_loaded()['app']['lang'] + '.json'
+    file_name = 'lang/' + app.config.get('app.lang', 'en') + '.json'
     return json.loads(open(file_name, 'r').read())
 
 
 _lang = _load_lang()
 
 
-def get(item):
-    value = _lang
-    for key in item.split('.'):
-        v = value.get(key)
-        if v is not None:
-            value = v
-        else:
-            return None
-
-    return value
+def get(keys: str):
+    return app.helpers.get_from_dict(keys, _lang)
 
 
 def replace(key, *items):
