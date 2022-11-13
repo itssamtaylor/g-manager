@@ -1,5 +1,6 @@
-import typing
 import json
+import typing
+
 import app.config
 import app.helpers
 

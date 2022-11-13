@@ -1,6 +1,6 @@
-from app.fields.composite import ButtonMap, DPIGroup, LEDColors, LightingType, Unknown
-from app.fields.byte import PollRate
 from app.devices.mouse import Mouse
+from app.fields.byte import PollRate
+from app.fields.composite import ButtonMap, DPIGroup, LEDColors, LightingType, Unknown
 
 
 class G600(Mouse):

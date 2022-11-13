@@ -1,7 +1,7 @@
-import app.lang
 import app.config
-from app.fields.composite import CompositeField
+import app.lang
 from app.fields.byte import ByteField, DPI
+from app.fields.composite import CompositeField
 
 
 class DPIGroup(CompositeField):

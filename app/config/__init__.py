@@ -1,5 +1,6 @@
-import toml
 import typing
+
+import toml
 
 _loaded = toml.load('config.toml')
 

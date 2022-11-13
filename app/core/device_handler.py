@@ -1,7 +1,9 @@
 import time
-import app.devices
+
 import usb.core
 import usb.util
+
+import app.devices
 
 
 class DeviceHandler:
