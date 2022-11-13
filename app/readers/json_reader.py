@@ -2,4 +2,5 @@ from app.readers.reader import Reader
 
 
 class JsonReader(Reader):
-    pass
+    def _read_reports(self):
+        pass
