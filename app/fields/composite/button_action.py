@@ -1,10 +1,12 @@
-import app.lang
+from app.fields.byte.device_button import DeviceButton
+from app.fields.byte.keyboard_button import KeyboardButton
+from app.fields.byte.keyboard_modifier import KeyboardModifier
 from app.fields.composite import CompositeField
 
 
 class ButtonAction(CompositeField):
     _map = [
-        (app.lang.get('button_action.device_scan_code'), None),
-        (app.lang.get('button_action.kb_modifier'), None),
-        (app.lang.get('button_action.kb_scan_code'), None),
+        ('deviceScanCode', DeviceButton),
+        ('kbModifier', KeyboardModifier),
+        ('kbScanCode', KeyboardButton),
     ]

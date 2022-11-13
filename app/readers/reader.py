@@ -13,7 +13,7 @@ class Reader:
         pass
 
     def get_report(self, number: int):
-        return self.get_reports()[number if number > 0 else number - 1]
+        return self.get_reports()[number - 1 if number > 0 else number]
 
     def get_reports(self):
         if self._reports is None:

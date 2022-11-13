@@ -17,9 +17,9 @@ def get(keys: str):
     return app.helpers.get_from_dict(keys, _lang)
 
 
-def replace(key, *items):
+def replace(key, **kwargs):
     value = get(key)
-    for var in items:
-        value = value.replace('{' + str(var[0]) + '}', str(var[1]))
+    for name, val in kwargs.items():
+        value = value.replace('{' + str(name) + '}', str(val))
 
     return value

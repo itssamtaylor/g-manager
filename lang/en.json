@@ -1,35 +1,39 @@
 {
-    "button_action": {
+    "report": {
+        "_name": "Mode{count_index}"
+    },
+
+    "ButtonAction": {
         "_name": "{button_name}",
         "device_scan_code": "deviceScanCode",
         "kb_modifier": "kbModifiers",
         "kb_scan_code": "kbScanCode"
     },
-    "button_map": {
+    "ButtonMap": {
         "_name": "Button Map {shifted}",
         "prefix": "g"
     },
-    "led_colors": {
+    "LEDColors": {
         "_name": "LED Colors {shifted}",
         "red": "Red",
         "green": "Green",
         "blue": "Blue"
     },
-    "lighting_type": {
+    "LightingType": {
         "_name": "Lighting",
         "lighting_effect": "Lighting Effect",
         "rate": "Lighting Change Rate (0-15):"
     },
-    "dpi_group": {
+    "DPIGroup": {
         "_name": "DPI",
         "dpi_shift_dpi": "DPI_SHIFT DPI",
         "default_index": "Default DPI Index",
-        "dpi_item": "DPI{index}"
+        "dpi_item": "DPI{count_index}"
     },
-    "poll_rate": {
+    "PollRate": {
         "_name": "Poll Rate"
     },
-    "unknown": {
+    "Unknown": {
         "_name": "Unknown{index}"
     }
 }

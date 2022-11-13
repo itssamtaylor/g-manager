@@ -102,7 +102,7 @@ class DeviceHandler:
         self.open_batch_job()
         reports = []
         for report_id in self.device_class.report_ids:
-            reports.append(self.read_report(report_id, self.device_class.read_length))
+            reports.append(self.read_report(report_id, self.device_class.report_length))
         self.close_batch_job()
         return reports
 

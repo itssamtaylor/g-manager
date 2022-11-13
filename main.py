@@ -1,6 +1,10 @@
+import app.core.transformer
 import app.config
-from pprint import pp
 import app.readers
 
+
 if __name__ == '__main__':
-    pp(app.readers.DeviceReader(app.config.get_device()).get_report(1))
+    r = app.readers.DeviceReader(app.config.get_device())
+    for i, r in enumerate(r.get_report(3)):
+        print(i, r)
+
