@@ -1,8 +1,7 @@
-import sys
-import os
-
-sys.path.extend([os.sep.join([os.getcwd(), 'src'])])
+from app.devices.mouse.G600 import G600
+from pprint import pp
 
 if __name__ == '__main__':
-    import config
-    print(config.json_indent)
+    mouse = G600()
+    pp(mouse)
+    pp(mouse.map_report_to())
