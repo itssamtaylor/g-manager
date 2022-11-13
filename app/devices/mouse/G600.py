@@ -1,5 +1,5 @@
-import app.types.composite
-import app.types.byte
+from app.fields.composite import ButtonMap, DPIGroup, LEDColors, LightingType, Unknown
+from app.fields.byte import PollRate
 from app.devices.mouse import Mouse
 
 
@@ -15,15 +15,15 @@ class G600(Mouse):
 
     def map_report_to(self):
         return (
-            app.types.composite.LEDColors(self),
-            app.types.composite.LightingType(self),
-            app.types.composite.Unknown(self),
-            app.types.byte.PollRate(self),
-            app.types.composite.DPIGroup(self),
-            app.types.composite.Unknown(self),
-            app.types.composite.ButtonMap(self),
-            app.types.composite.LEDColors(self, shifted=True),
-            app.types.composite.ButtonMap(self, shifted=True)
+            LEDColors(self),
+            LightingType(self),
+            Unknown(self),
+            PollRate(self),
+            DPIGroup(self),
+            Unknown(self),
+            ButtonMap(self),
+            LEDColors(self, shifted=True),
+            ButtonMap(self, shifted=True)
         )
 
     def button_names(self):

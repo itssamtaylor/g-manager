@@ -1,13 +1,13 @@
 import app.config
 import app.lang
-from app.types.composite import Composite, ButtonAction
+from app.fields.composite import CompositeField, ButtonAction
 
 
-class ButtonMap(Composite):
+class ButtonMap(CompositeField):
     _map = []
 
     def initialize(self):
-        if len(self._map) is 0:
+        if len(self._map) == 0:
             if callable(getattr(self.device, 'button_names')) and self.device.button_names() is not None:
                 self._map = self.device.button_names()
             else:

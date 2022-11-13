@@ -3,7 +3,7 @@ import json
 import app.config
 
 
-class Type(object):
+class Field(object):
     _shifted: bool = False
     _dict: dict[str | int, typing.Any] = {}
     device = None

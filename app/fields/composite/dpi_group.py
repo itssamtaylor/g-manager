@@ -1,13 +1,13 @@
 import app.lang
 import app.config
-from app.types.composite import Composite
-from app.types.byte import Byte, DPI
+from app.fields.composite import CompositeField
+from app.fields.byte import ByteField, DPI
 
 
-class DPIGroup(Composite):
+class DPIGroup(CompositeField):
     _map = [
         (app.lang.get('dpi_group.dpi_shift_dpi'), DPI),
-        (app.lang.get('dpi_group.default_index'), Byte),
+        (app.lang.get('dpi_group.default_index'), ByteField),
     ]
 
     def initialize(self):
