@@ -12,3 +12,9 @@ class ArrayField(Field):
     def get_total_bytes(self):
         bytes_per_item = self._field_type.get_total_bytes()
         return bytes_per_item * len(self._data)
+
+    def from_readable(self, readable):
+        pass
+
+    def from_byte(self, byte):
+        self._data = [b for b in byte]

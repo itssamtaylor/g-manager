@@ -1,17 +1,23 @@
 import app.devices
+from app.fields.byte import ByteField
 
 
 def multi_print(data, indent: str = ''):
-    if isinstance(data, object) and hasattr(data, 'test_data'):
-        multi_print(data.test_data(), indent + '  ')
+    if isinstance(data, object) and hasattr(data, '_instance_map'):
+        multi_print(data._instance_map, indent + '  ')
     elif isinstance(data, list):
         for item in data:
             multi_print(item, indent + '  ')
     elif isinstance(data, tuple):
-        print(indent + '"' + str(data[0]) + '": {')
-        multi_print(data[1], indent + '  ')
-        print(indent + '}')
-
+        value = indent + '"' + str(data[0]) + '": '
+        if isinstance(data[1], ByteField):
+            value += '"' + str(data[1].readable_value) + '"'
+            print(value)
+        else:
+            value += '{'
+            print(value)
+            multi_print(data[1], indent + '  ')
+            print(indent + '}')
 
 
 class Transformer:

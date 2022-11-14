@@ -1,8 +1,6 @@
-import collections
-
-
 class Field(object):
-    _dict = collections.OrderedDict()
+    byte_value = None
+    readable_value = None
     _kwargs = {}
     device = None
 
@@ -21,6 +19,12 @@ class Field(object):
 
     def post_init(self):
         pass
+
+    def from_byte(self, byte):
+        raise NotImplementedError()
+
+    def from_readable(self, readable):
+        raise NotImplementedError()
 
     def get_total_bytes(self):
         raise NotImplementedError()

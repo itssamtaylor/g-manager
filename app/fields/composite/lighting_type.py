@@ -1,10 +1,9 @@
-import app.lang
-from app.fields.byte import ByteField
+from app.fields.byte import ByteField, LightingEffect
 from app.fields.composite import CompositeField
 
 
 class LightingType(CompositeField):
     composition_map = [
-        ('lightingEffect', ByteField),
+        ('lightingEffect', LightingEffect),
         ('lightingChangeRate', ByteField),
     ]

@@ -3,6 +3,7 @@ import typing
 import toml
 
 _loaded = toml.load('config.toml')
+_device = None
 
 
 def get(keys: str, default: typing.Any = None):
@@ -12,8 +13,11 @@ def get(keys: str, default: typing.Any = None):
 
 
 def get_device():
-    import app.devices
-    return app.devices.load_device(get('device.name'), get('device.type', 'mouse'))
+    global _device
+    if _device is None:
+        import app.devices
+        _device = app.devices.load_device(get('device.name'), get('device.type', 'mouse'))
+    return _device
 
 
 # App config

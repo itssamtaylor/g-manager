@@ -1,9 +1,8 @@
 from app.fields import Field
+from array import array
 
 
 class ByteField(Field):
-    byte_value = 0
-    readable_value = None
 
     def get_total_bytes(self):
         return 1
@@ -25,6 +24,11 @@ class ByteField(Field):
         self.readable_value = readable
 
     def from_byte(self, byte):
+        if isinstance(byte, list | tuple | array | bytearray):
+            if len(byte) == 1:
+                byte = byte[0]
+            else:
+                raise ValueError('byte should be an integer or array with one item')
         self._set_byte_value(byte)
         try:
             self._set_readable_value(self.make_readable_value(byte))
