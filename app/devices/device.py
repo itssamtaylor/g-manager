@@ -19,6 +19,7 @@ class Device:
     report_map: tuple = None
 
     unknown_group_indexes: tuple = ()
+    special_field_map: dict = {}
 
     _instantiated_report_map: tuple = None
 
@@ -56,8 +57,12 @@ class Device:
             except KeyError:
                 _indexes[item_class] = 0
 
-            _map.append(
-                (item_name, item_class(self, index=_indexes[item_class]))
-            )
+            _map.append((
+                item_name,
+                item_class(
+                    self,
+                    index=_indexes[item_class],
+                )
+            ))
 
         self._instantiated_report_map = tuple(_map)

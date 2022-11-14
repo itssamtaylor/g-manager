@@ -26,7 +26,7 @@ class Field(object):
         raise NotImplementedError()
 
     def get_arg(self, name, default=None):
-        try:
+        if name in self._kwargs:
             return self._kwargs[name]
-        except KeyError:
+        else:
             return default

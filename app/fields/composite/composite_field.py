@@ -9,7 +9,16 @@ class CompositeField(Field):
         self._instance_map = []
         for item in self.composition_map:
             if isinstance(item, tuple) and callable(item[1]):
-                self._instance_map.append((item[0], item[1](self.device)))
+                if item[1] in self.device.special_field_map:
+                    self._instance_map.append((
+                        item[0],
+                        self.device.special_field_map[item[1]](self.device)
+                    ))
+                else:
+                    self._instance_map.append((
+                        item[0],
+                        item[1](self.device)
+                    ))
 
     def get_total_bytes(self):
         total = 0

@@ -1,7 +1,7 @@
-from app.maps.key import KeyMap
-from app.maps.lighting_effect import LightingEffectMap
-from app.maps.modifier import ModifierMap
-from app.maps.mouse_button import MouseButtonMap
+from app.maps.key_map import KeyMap
+from app.maps.lighting_effect_map import LightingEffectMap
+from app.maps.modifier_map import ModifierMap
+from app.maps.mouse_button_map import MouseButtonMap
 
 
 def key_map() -> KeyMap:

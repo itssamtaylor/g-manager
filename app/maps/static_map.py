@@ -14,20 +14,20 @@ class StaticMap:
     def get(self, search: str | int) -> int | str | None:
         try:
             if isinstance(search, str):
-                return self.to_raw(search)
+                return self.to_byte(search)
             else:
                 return self.to_string(search)
         except KeyError:
             return None
 
-    def from_raw(self, raw: int) -> str:
+    def from_byte(self, raw: int) -> str:
         return self.to_string(raw)
 
     def from_string(self, string: str) -> int:
-        return self.to_raw(string)
+        return self.to_byte(string)
 
     def to_string(self, raw: int) -> str:
         return self._map[raw]
 
-    def to_raw(self, string: str) -> int:
-        return self._flipped[string.upper()]
+    def to_byte(self, string: str) -> int:
+        return self._flipped[string.strip().upper()]
