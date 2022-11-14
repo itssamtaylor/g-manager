@@ -1,6 +1,7 @@
 from app.devices.mouse import Mouse
-from app.fields.byte import PollRate
-from app.fields.composite import ButtonMap, DPIGroup, LEDColors, LightingType, Unknown
+from app.fields.byte import PollRate, ReportID
+from app.fields.array import Unknown
+from app.fields.composite import ButtonMap, DPIGroup, LEDColors, LightingType
 
 
 class G600(Mouse):
@@ -11,12 +12,14 @@ class G600(Mouse):
     num_buttons = 20
     shiftable = True
     has_dpi_shift = True
+    num_dpi_options = 4
     unknown_group_indexes = (
         (0x46, 0x4b),
         (0x52, 0x5f),
     )
 
     report_map = (
+        ('reportId', ReportID),
         ('ledColors', LEDColors),
         ('lightingType', LightingType),
         ('unknown', Unknown),

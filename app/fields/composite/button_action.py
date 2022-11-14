@@ -5,7 +5,7 @@ from app.fields.composite import CompositeField
 
 
 class ButtonAction(CompositeField):
-    _map = [
+    composition_map = [
         ('deviceScanCode', DeviceButton),
         ('kbModifier', KeyboardModifier),
         ('kbScanCode', KeyboardButton),

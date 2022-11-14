@@ -4,7 +4,7 @@ from app.fields.composite import CompositeField
 
 
 class LEDColors(CompositeField):
-    _map = [
+    composition_map = [
         ('red', ByteField),
         ('green', ByteField),
         ('blue', ByteField)

@@ -1,17 +1,17 @@
-import app.config
-import app.lang
 from app.fields.byte import ByteField, DPI
 from app.fields.composite import CompositeField
 
 
 class DPIGroup(CompositeField):
-    _map = [
-        ('dpiShiftDpi', DPI),
-        ('defaultDpiIndex', ByteField),
-    ]
+    composition_map = []
 
-    def initialize(self):
-        for index in range(1, app.config.get_device().num_dpi_options):
-            self._map.append(
-                ('dpi' + str(index), DPI)
+    def init(self):
+        if self.device.has_dpi_shift:
+            self.composition_map.append(('dpiShiftDpi', DPI))
+
+        self.composition_map.append(('defaultDpiIndex', ByteField))
+
+        for index in range(self.device.num_dpi_options):
+            self.composition_map.append(
+                ('dpi' + str(index + 1), DPI)
             )

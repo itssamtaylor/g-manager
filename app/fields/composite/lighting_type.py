@@ -4,7 +4,7 @@ from app.fields.composite import CompositeField
 
 
 class LightingType(CompositeField):
-    _map = [
+    composition_map = [
         ('lightingEffect', ByteField),
         ('lightingChangeRate', ByteField),
     ]

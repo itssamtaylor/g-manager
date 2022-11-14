@@ -1,32 +1,32 @@
 import collections
 
-import app.lang
-
 
 class Field(object):
     _dict = collections.OrderedDict()
-    _shifted: bool = False
-    _index = None
+    _kwargs = {}
     device = None
 
     def __init__(self, device, **kwargs):
         self.device = device
-        self._shifted = kwargs.get('shifted') or False
-        self.initialize()
+        self._kwargs = kwargs
+        self.pre_init()
+        self.init()
+        self.post_init()
 
-    def initialize(self):
+    def pre_init(self):
         pass
 
-    def test_data(self):
-        return ''
+    def init(self):
+        pass
 
-    def _lang(self, key, **kwargs):
-        return app.lang.replace(self.__class__.__name__ + '.' + key, **kwargs)
+    def post_init(self):
+        pass
 
-    def _name(self):
-        return self._lang(
-            '_name',
-            shifted='shifted' if self._shifted else '',
-            index=self._index or '',
-            count_index='' if self._index is None else self._index + 1,
-        )
+    def get_total_bytes(self):
+        raise NotImplementedError()
+
+    def get_arg(self, name, default=None):
+        try:
+            return self._kwargs[name]
+        except KeyError:
+            return default

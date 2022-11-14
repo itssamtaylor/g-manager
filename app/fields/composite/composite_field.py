@@ -2,14 +2,17 @@ from app.fields import Field
 
 
 class CompositeField(Field):
-    _map = []
+    composition_map: list = []
+    _instance_map: list = []
 
-    def __init__(self, device, **kwargs):
-        super().__init__(device, **kwargs)
-        for index, item in enumerate(self._map):
+    def post_init(self):
+        self._instance_map = []
+        for item in self.composition_map:
             if isinstance(item, tuple) and callable(item[1]):
-                self._map[index] = (item[0], item[1](self.device))
+                self._instance_map.append((item[0], item[1](self.device)))
 
-    def test_data(self):
-        return self._map
-
+    def get_total_bytes(self):
+        total = 0
+        for item in self._instance_map:
+            total += item[1].get_total_bytes()
+        return total

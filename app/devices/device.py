@@ -20,6 +20,8 @@ class Device:
 
     unknown_group_indexes: tuple = ()
 
+    _instantiated_report_map: tuple = None
+
     def __init__(self):
         self.num_unknown_groups = len(self.unknown_group_indexes)
         self.num_reports = len(self.report_ids)
@@ -31,7 +33,31 @@ class Device:
             self.hid_write_index = self.control_interface
 
     def get_report_map(self):
-        if self.report_map is not None:
-            return self.report_map
-        else:
-            raise NotImplementedError()
+        if self._instantiated_report_map is None:
+            self._build_instantiated_report_map()
+        return self._instantiated_report_map
+
+    def _build_instantiated_report_map(self):
+        if self.report_map is None:
+            raise NotImplementedError('report_map property must be set on device!')
+
+        _indexes = {}
+        _map = []
+        for item in self.report_map:
+            if isinstance(item, tuple):
+                item_name = item[0]
+                item_class = item[1]
+            else:
+                item_name = item.__name__
+                item_class = item
+
+            try:
+                _indexes[item_class] += 1
+            except KeyError:
+                _indexes[item_class] = 0
+
+            _map.append(
+                (item_name, item_class(self, index=_indexes[item_class]))
+            )
+
+        self._instantiated_report_map = tuple(_map)
