@@ -1,3 +1,8 @@
+import json
+
+import app.config
+
+
 class Field(object):
     byte_value = None
     readable_value = None
@@ -34,3 +39,9 @@ class Field(object):
             return self._kwargs[name]
         else:
             return default
+
+    def __str__(self):
+        return self.to_json()
+
+    def to_json(self):
+        return json.dumps(self.readable_value, indent=app.config.json_indent)

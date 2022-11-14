@@ -33,9 +33,6 @@ class Device:
         if self.hid_write_index is None:
             self.hid_write_index = self.control_interface
 
-        if self.report_length is None:
-            self.report_length = self.calc_bytes_per_report()
-
     def get_report_map(self):
         if self._instantiated_report_map is None:
             self._build_instantiated_report_map()
@@ -69,22 +66,3 @@ class Device:
             ))
 
         self._instantiated_report_map = tuple(_map)
-
-    def calc_bytes_per_report(self):
-        total = 0
-        for instance in self.get_report_map():
-            if isinstance(instance, tuple):
-                total += instance[1].get_total_bytes()
-            else:
-                total += instance.get_total_bytes()
-        return total
-
-    def import_bytes(self, byte_data):
-        byte_start = 0
-        for instance in self.get_report_map():
-            byte_end = byte_start + instance[1].get_total_bytes()
-            instance[1].from_byte(byte_data[byte_start:byte_end])
-            byte_start = byte_end
-
-    def import_readable(self, readable_data):
-        pass
