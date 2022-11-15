@@ -53,4 +53,16 @@ class CompositeField(Field):
         return self
 
     def load_readable_value(self, readable):
-        pass
+        self._byte_value = array('B')
+        readable = OrderedDict(readable)
+        for instance in self._instance_map:
+            if readable.get(instance[0]) is not None:
+                instance[1].load_readable_value(readable.get(instance[0]))
+                self._readable_value[instance[0]] = instance[1].get_readable_value()
+                byte_value = instance[1].get_byte_value()
+                if isinstance(byte_value, int):
+                    self._byte_value.append(byte_value)
+                else:
+                    self._byte_value.extend(byte_value)
+        return self
+

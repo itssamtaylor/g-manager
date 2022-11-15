@@ -21,5 +21,5 @@ class ArrayField(Field):
         self._readable_value = []
         for b in byte:
             self._field_type.load_byte_value(b)
-            self._readable_value.append(self._field_type.readable_value)
+            self._readable_value.append(self._field_type.get_readable_value())
         return self

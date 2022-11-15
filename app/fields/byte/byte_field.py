@@ -18,10 +18,10 @@ class ByteField(Field):
             byte = 0
         elif byte > 255:
             byte = 255
-        self.byte_value = byte
+        self._byte_value = byte
 
     def _set_readable_value(self, readable):
-        self.readable_value = readable
+        self._readable_value = readable
 
     def load_byte_value(self, byte):
         if isinstance(byte, list | tuple | array | bytearray):
