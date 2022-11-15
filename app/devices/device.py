@@ -42,26 +42,28 @@ class Device:
         if self.report_map is None:
             raise NotImplementedError('report_map property must be set on device!')
 
-        _indexes = {}
+        _class_relative_index = {}
+        _names = []
         _map = []
         for item in self.report_map:
-            if isinstance(item, tuple):
-                item_name = item[0]
-                item_class = item[1]
-            else:
-                item_name = item.__name__
-                item_class = item
+            item_name = item[0] if isinstance(item, tuple) else item.__name__
+            item_class = item[1] if isinstance(item, tuple) else item
 
-            try:
-                _indexes[item_class] += 1
-            except KeyError:
-                _indexes[item_class] = 0
+            if item_name in _names:
+                raise KeyError('key: "' + item_name + '" found more than once in report_map!')
+
+            _names.append(item_name)
+
+            if item_class in _class_relative_index:
+                _class_relative_index[item_class] += 1
+            else:
+                _class_relative_index[item_class] = 0
 
             _map.append((
                 item_name,
                 item_class(
                     self,
-                    index=_indexes[item_class],
+                    index=_class_relative_index[item_class],
                 )
             ))
 
