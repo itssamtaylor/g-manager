@@ -1,4 +1,3 @@
-import app.lang
 from app.fields.byte import ByteField
 from app.fields.composite import CompositeField
 

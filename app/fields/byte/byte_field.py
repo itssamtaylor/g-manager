@@ -23,7 +23,7 @@ class ByteField(Field):
     def _set_readable_value(self, readable):
         self.readable_value = readable
 
-    def from_byte(self, byte):
+    def load_byte_value(self, byte):
         if isinstance(byte, list | tuple | array | bytearray):
             if len(byte) == 1:
                 byte = byte[0]
@@ -34,10 +34,12 @@ class ByteField(Field):
             self._set_readable_value(self.make_readable_value(byte))
         except NotImplementedError:
             self._set_readable_value(byte)
+        return self
 
-    def from_readable(self, readable):
+    def load_readable_value(self, readable):
         self._set_readable_value(readable)
         try:
             self._set_byte_value(self.make_byte_value(readable))
         except NotImplementedError:
             self._set_byte_value(readable)
+        return self

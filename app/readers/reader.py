@@ -2,11 +2,12 @@ import app.devices
 
 
 class Reader:
-    device: app.devices.Device
+    source = None
     _reports = None
 
-    def __init__(self, device: app.devices.Device):
-        self.device = device
+    def __init__(self, source: app.devices.Device | str):
+        self._reports = None
+        self.source = source
         self.initialize()
 
     def initialize(self):

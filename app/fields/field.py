@@ -4,8 +4,8 @@ import app.config
 
 
 class Field(object):
-    byte_value = None
-    readable_value = None
+    _byte_value = None
+    _readable_value = None
     _kwargs = {}
     device = None
 
@@ -25,10 +25,16 @@ class Field(object):
     def post_init(self):
         pass
 
-    def from_byte(self, byte):
+    def get_byte_value(self):
+        return self._byte_value
+
+    def get_readable_value(self):
+        return self._readable_value
+
+    def load_byte_value(self, byte):
         raise NotImplementedError()
 
-    def from_readable(self, readable):
+    def load_readable_value(self, readable):
         raise NotImplementedError()
 
     def get_total_bytes(self):
@@ -44,4 +50,7 @@ class Field(object):
         return self.to_json()
 
     def to_json(self):
-        return json.dumps(self.readable_value, indent=app.config.json_indent)
+        return json.dumps(self.get_readable_value(), indent=app.config.json_indent)
+
+    def from_json(self, json_string):
+        return self.load_readable_value(json.loads(json_string))

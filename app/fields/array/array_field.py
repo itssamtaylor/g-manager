@@ -13,11 +13,13 @@ class ArrayField(Field):
         bytes_per_item = self._field_type.get_total_bytes()
         return bytes_per_item * self._length
 
-    def from_readable(self, readable):
+    def load_readable_value(self, readable):
         pass
 
-    def from_byte(self, byte):
-        self.readable_value = []
+    def load_byte_value(self, byte):
+        self._byte_value = byte
+        self._readable_value = []
         for b in byte:
-            self._field_type.from_byte(b)
-            self.readable_value.append(self._field_type.readable_value)
+            self._field_type.load_byte_value(b)
+            self._readable_value.append(self._field_type.readable_value)
+        return self

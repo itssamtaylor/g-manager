@@ -11,7 +11,7 @@ def multi_print(data, indent: str = ''):
     elif isinstance(data, tuple):
         value = indent + '"' + str(data[0]) + '": '
         if isinstance(data[1], ByteField):
-            value += '"' + str(data[1].readable_value) + '"'
+            value += '"' + str(data[1]._readable_value) + '"'
             print(value)
         else:
             value += '{'

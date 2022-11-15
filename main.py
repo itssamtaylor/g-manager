@@ -14,5 +14,5 @@ b = [243, 141, 64, 255, 0, 4, 0, 0, 0, 0, 0, 0, 0, 3, 16, 24, 32, 64, 0, 0, 0, 0
 if __name__ == '__main__':
     dev = app.config.get_device()
     r = Report(dev)
-    r.from_byte(b)
+    r.load_byte_value(b)
     open('test.json', 'w').write(r.to_json())
