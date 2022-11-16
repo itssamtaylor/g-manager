@@ -6,10 +6,10 @@ _file = FileLoader(_arguments['config_file']).get_loaded()
 _device = None
 
 
-def get(key, default=None):
+def get(key, default=None, file_parent_key=None):
     import app.helpers
     arg_value = app.helpers.get_from_dict(key, _arguments)
-    file_value = app.helpers.get_from_dict(key, _file)
+    file_value = app.helpers.get_from_dict(key, _file if file_parent_key is None else _file[file_parent_key])
     return arg_value or file_value or default
 
 
@@ -29,15 +29,14 @@ def get_device():
     return _device
 
 
-device_accessor: str = 'DEVICE'
-
-source: str = _arguments['source']
-destination: str | None = _arguments['destination']
-as_bytes: bool = _file['app']['as_bytes'] | _arguments['as_bytes']
-overwrite: bool = _file['app']['overwrite'] | _arguments['overwrite']
-dry_run: bool = _file['app']['dry_run'] | _arguments['dry_run']
-debug: bool = _file['app']['debug'] | _arguments['debug']
-verbose: bool = _file['app']['verbose'] | _arguments['verbose']
-quiet: bool = _file['app']['quiet'] | _arguments['quiet']
-force: bool = _file['app']['force'] | _arguments['force']
-json_indent: int = _file['app']['json_indent']
+source: str = get('source')
+destination: str | None = get('destination', None)
+as_bytes: bool = get('as_bytes', file_parent_key='app')
+overwrite: bool = get('overwrite', file_parent_key='app')
+dry_run: bool = get('dry_run', file_parent_key='app')
+debug: bool = get('debug', file_parent_key='app')
+verbose: bool = get('verbose', file_parent_key='app')
+quiet: bool = get('quiet', file_parent_key='app')
+force: bool = get('force', file_parent_key='app')
+json_indent: int = get('app.json_indent', 4)
+device_accessor: str = get('app.device_accessor', 'DEVICE')
