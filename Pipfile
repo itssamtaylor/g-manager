@@ -1,0 +1,13 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyusb = "==1.2.1"
+toml = "==0.10.2"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
