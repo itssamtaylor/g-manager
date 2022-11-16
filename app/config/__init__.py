@@ -29,6 +29,8 @@ def get_device():
     return _device
 
 
+device_accessor: str = 'DEVICE'
+
 source: str = _arguments['source']
 destination: str | None = _arguments['destination']
 as_bytes: bool = _file['app']['as_bytes'] | _arguments['as_bytes']

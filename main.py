@@ -1,6 +1,4 @@
-import app.config
-import pprint
-
+import app
 
 if __name__ == '__main__':
-    pass
+    app.run()
