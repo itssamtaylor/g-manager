@@ -4,6 +4,7 @@ import usb.core
 import usb.util
 
 import app.devices
+import app.core
 
 
 class DeviceHandler:
@@ -79,6 +80,7 @@ class DeviceHandler:
         return data
 
     def read_report(self, report_id: int, length: int):
+        app.core.debug('Reading report ID "{:x}"...'.format(report_id))
         return self.ctrl_transfer(
             bmRequestType=self.device_class.hid_read_type,
             bRequest=self.device_class.hid_read_request,
@@ -89,6 +91,7 @@ class DeviceHandler:
         )
 
     def write_report(self, report_id: int, data: bytes):
+        app.core.debug('Writing report ID "{:x}"...'.format(report_id))
         return self.ctrl_transfer(
             bmRequestType=self.device_class.hid_write_type,
             bRequest=self.device_class.hid_write_request,
@@ -99,14 +102,17 @@ class DeviceHandler:
         )
 
     def read_reports(self):
+        app.core.verbose('Starting to read from device...')
         self.open_batch_job()
         reports = []
         for report_id in self.device_class.report_ids:
             reports.append(self.read_report(report_id, self.device_class.report_length))
         self.close_batch_job()
+        app.core.verbose('Done reading from device.')
         return reports
 
     def write_reports(self, reports: list):
+        app.core.verbose('Starting to write to device...')
         self.open_batch_job()
         success = True
         for report_id, report in zip(self.device_class.report_ids, reports):
@@ -114,4 +120,5 @@ class DeviceHandler:
             success &= length == len(report)
             time.sleep(1.1)
         self.close_batch_job()
+        app.core.verbose('Done writing to device.')
         return success

@@ -1,6 +1,6 @@
 [device]
-name = "G600"
-type = "mouse"
+name = 'G600'
+type = 'mouse'
 
 [app]
 as_bytes = false

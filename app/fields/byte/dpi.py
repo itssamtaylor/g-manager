@@ -8,4 +8,3 @@ class DPI(ByteField):
 
     def make_byte_value(self, readable):
         return int(readable) // 50
-

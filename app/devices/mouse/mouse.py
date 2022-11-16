@@ -1,6 +1,7 @@
 from app.devices import Device
 from app.fields.byte import DeviceButton, MouseButton
 
+
 class Mouse(Device):
     num_buttons: int = 3
     num_dpi_options: int = 4
