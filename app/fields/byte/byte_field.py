@@ -1,5 +1,6 @@
-from app.fields import Field
 from array import array
+
+from app.fields import Field
 
 
 class ByteField(Field):

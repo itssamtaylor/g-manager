@@ -46,11 +46,14 @@ class Field(object):
         else:
             return default
 
+    def bytes_to_json(self, indent=app.config.json_indent):
+        return json.dumps(self.get_byte_value(), indent=indent)
+
     def __str__(self):
         return self.to_json()
 
-    def to_json(self):
-        return json.dumps(self.get_readable_value(), indent=app.config.json_indent)
+    def to_json(self, indent=app.config.json_indent):
+        return json.dumps(self.get_readable_value(), indent=indent)
 
     def from_json(self, json_string):
         return self.load_readable_value(json.loads(json_string))

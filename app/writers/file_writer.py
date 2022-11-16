@@ -1,5 +1,5 @@
 import os
-
+import json
 import app.config
 from app.fields.array import ReportList
 from app.writers import Writer
@@ -14,6 +14,13 @@ class FileWriter(Writer):
 
     def write_reports(self, report_list: ReportList):
         if self._can_create_file():
-            open(self.destination, 'w').write(report_list.to_json())
+            data = {}
+            if app.config.as_bytes:
+                data['reports'] = report_list.get_byte_value()
+                data['format'] = 'bytes'
+            else:
+                data['reports'] = report_list.get_readable_value()
+                data['format'] = 'readable'
+            open(self.destination, 'w').write(json.dumps(data, indent=app.config.json_indent))
         else:
             raise Exception('File already exists and overwrite flag is false!')

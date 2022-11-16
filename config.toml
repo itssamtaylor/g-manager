@@ -4,6 +4,7 @@ type = "mouse"
 
 [app]
 as_bytes = false
+minified = false
 overwrite = false
 dry_run = false
 debug = false

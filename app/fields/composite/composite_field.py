@@ -11,7 +11,7 @@ def _name(obj):
 
 
 class CompositeField(Field):
-    _byte_value = array('B')
+    _byte_value = []
     _readable_value = OrderedDict()
     composition_map: list = []
     _instance_map: list = []
@@ -26,7 +26,7 @@ class CompositeField(Field):
             return obj
 
     def post_init(self):
-        self._byte_value = array('B')
+        self._byte_value = []
         self._readable_value = OrderedDict()
         self._instance_map = []
         for item in self.composition_map:
@@ -43,6 +43,8 @@ class CompositeField(Field):
         return total
 
     def load_byte_value(self, byte):
+        if isinstance(byte, array):
+            byte = byte.tolist()
         self._byte_value = byte
         byte_start = 0
         for instance in self._instance_map:
@@ -53,7 +55,7 @@ class CompositeField(Field):
         return self
 
     def load_readable_value(self, readable):
-        self._byte_value = array('B')
+        self._byte_value = []
         readable = OrderedDict(readable)
         for instance in self._instance_map:
             if readable.get(instance[0]) is not None:
@@ -65,4 +67,3 @@ class CompositeField(Field):
                 else:
                     self._byte_value.extend(byte_value)
         return self
-

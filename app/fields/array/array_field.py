@@ -1,3 +1,5 @@
+from array import array
+
 from app.fields import Field
 from app.fields.byte import ByteField
 
@@ -28,9 +30,12 @@ class ArrayField(Field):
 
     def load_byte_value(self, byte):
         self._items = []
-        self._byte_value = byte
+        self._byte_value = []
         self._readable_value = []
         for b in byte:
+            if isinstance(b, array):
+                b = b.tolist()
+            self._byte_value.append(b)
             instance = self._field_type.__class__(self.device)
             instance.load_byte_value(b)
             self._readable_value.append(instance.get_readable_value())
