@@ -1,6 +1,6 @@
 import app.core
 import app.devices
-from app.fields.composite import Report
+from app.fields.array import ReportList
 from app.readers.reader import Reader
 import app.config
 
@@ -14,7 +14,5 @@ class DeviceReader(Reader):
         self.handler = app.core.DeviceHandler(self.source)
 
     def _read_reports(self):
-        self._reports = []
-        for report in self.handler.read_reports():
-            self._reports.append(Report(app.config.get_device()).load_byte_value(report))
-        return self._reports
+        self._report_list = ReportList(self.source).load_byte_value(self.handler.read_reports())
+        return self._report_list

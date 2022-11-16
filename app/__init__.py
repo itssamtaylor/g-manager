@@ -7,34 +7,33 @@ def read_from_device():
 
 
 def read_from_file():
-    return {}
+    from app.readers import FileReader
+    return FileReader(app.config.source).get_reports()
 
 
-def write_to_device(data):
-    pass
+def write_to_device(report_list):
+    from app.writers import DeviceWriter
+    DeviceWriter(app.config.get_device()).write_reports(report_list)
 
 
-def write_to_file(data):
-    pass
+def write_to_file(report_list):
+    from app.writers import FileWriter
+    FileWriter(app.config.destination).write_reports(report_list)
 
 
-def write_to_stdout(data):
-    if isinstance(data, list):
-        for d in data:
-            print(d)
-    else:
-        print(data)
+def write_to_stdout(report_list):
+    print(report_list)
 
 
 def run():
     if app.config.source == app.config.device_accessor:
-        data = read_from_device()
+        report_list = read_from_device()
     else:
-        data = read_from_file()
+        report_list = read_from_file()
 
     if app.config.destination == app.config.device_accessor:
-        write_to_device(data)
+        write_to_device(report_list)
     elif app.config.destination is None:
-        write_to_stdout(data)
+        write_to_stdout(report_list)
     else:
-        write_to_stdout(data)
+        write_to_file(report_list)

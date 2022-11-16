@@ -1,10 +1,11 @@
 [app]
 as_bytes = false
-force = false
+overwrite = false
 dry_run = false
 debug = false
 verbose = false
 quiet = false
+force = false
 json_indent = 4
 
 [device]
