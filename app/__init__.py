@@ -1,3 +1,4 @@
+from app.info import *
 import app.config
 import app.core
 
@@ -31,18 +32,18 @@ def write_to_stdout(report_list):
 
 def run():
     if app.config.source == app.config.device_accessor:
-        app.core.verbose('Going to load from device...')
+        app.core.verbose('Will load from device.')
         report_list = read_from_device(app.config.get_device())
     else:
-        app.core.verbose('Going to load from file "{}"...'.format(app.config.source))
+        app.core.verbose('Will load from file "{}".'.format(app.config.source))
         report_list = read_from_file(app.config.source)
 
     if app.config.destination == app.config.device_accessor:
-        app.core.verbose('Going to write to device...')
+        app.core.verbose('Will write to device.')
         write_to_device(report_list, app.config.get_device())
     elif app.config.destination is None:
-        app.core.verbose('Going to write to stdout...')
+        app.core.verbose('Will write to stdout.')
         write_to_stdout(report_list)
     else:
-        app.core.verbose('Going to write to file "{}"...'.format(app.config.destination))
+        app.core.verbose('Will write to file "{}".'.format(app.config.destination))
         write_to_file(report_list, app.config.destination)

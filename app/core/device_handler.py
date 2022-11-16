@@ -80,7 +80,7 @@ class DeviceHandler:
         return data
 
     def read_report(self, report_id: int, length: int):
-        app.core.debug('Reading report ID "{:x}"...'.format(report_id))
+        app.core.debug('Reading report ID "0x0{:x}"...'.format(report_id))
         return self.ctrl_transfer(
             bmRequestType=self.device_class.hid_read_type,
             bRequest=self.device_class.hid_read_request,
@@ -91,7 +91,7 @@ class DeviceHandler:
         )
 
     def write_report(self, report_id: int, data: bytes):
-        app.core.debug('Writing report ID "{:x}"...'.format(report_id))
+        app.core.debug('Writing report ID "0x0{:x}"...'.format(report_id))
         return self.ctrl_transfer(
             bmRequestType=self.device_class.hid_write_type,
             bRequest=self.device_class.hid_write_request,

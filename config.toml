@@ -11,6 +11,7 @@ debug = false
 verbose = false
 quiet = false
 force = false
+lenient = false
 json_indent = 4
 device_accessor = 'DEVICE'
 

@@ -39,5 +39,6 @@ debug: bool = get('debug', file_parent_key='app')
 verbose: bool = get('verbose', file_parent_key='app')
 quiet: bool = get('quiet', file_parent_key='app')
 force: bool = get('force', file_parent_key='app')
+lenient: bool = get('lenient', file_parent_key='app')
 json_indent: int | None = get('app.json_indent', 4) if not minified else None
 device_accessor: str = get('app.device_accessor', 'DEVICE')
