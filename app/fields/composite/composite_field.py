@@ -46,6 +46,7 @@ class CompositeField(Field):
         if isinstance(byte, array):
             byte = byte.tolist()
         self._byte_value = byte
+        self._readable_value = OrderedDict()
         byte_start = 0
         for instance in self._instance_map:
             byte_end = byte_start + instance[1].get_total_bytes()
