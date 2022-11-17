@@ -1,5 +1,7 @@
 # G Manager
 
+**PRESENTLY ONLY WORKS FOR READING, WRITING IS HAVING ISSUES**
+
 > Note: currently G600 is the **ONLY** device supported.
 > If you have another device and would like to add support please create a device driver in `app/devices`
 

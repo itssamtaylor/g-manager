@@ -1,10 +1,12 @@
 import time
 
+import array
 import usb.core
 import usb.util
 
 import app.devices
 import app.core
+from app.fields.composite import Report
 
 
 class DeviceHandler:
@@ -116,6 +118,12 @@ class DeviceHandler:
         self.open_batch_job()
         success = True
         for report_id, report in zip(self.device_class.report_ids, reports):
+            if isinstance(report, Report):
+                report = report.get_byte_value()
+
+            if not isinstance(report, bytearray):
+                report = bytearray(report)
+
             length = self.write_report(report_id, report)
             success &= length == len(report)
             time.sleep(1.1)
